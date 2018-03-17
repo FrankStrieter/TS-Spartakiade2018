@@ -1,29 +1,11 @@
 // type Note = {titel: string, description: string};
+import { Note, NoteWithTodos, IamATodo } from "./models";
+import { NotesService } from "./services/note.service";
+import { pluralize } from "./utils/modifiers/pluralize.template";
 
-class Note {
-    constructor(
-        public titel: string,
-        public description: string) {
-    }
-}
-
-class NoteWithTodos extends Note {
-    constructor(
-        titel: string,
-        description: string,
-        public todos: Todo[]) {
-            super(titel, description);
-    }
-}
-
-// tslint:disable-next-line:interface-name
-interface Todo {
-    title: string;
-    checked: boolean;
-}
-
-const note: Note  = new Note("spartakiade", "Hello Developer");
+const note: Note  = new Note(3,"spartakiade", "Hello Developer");
 const noteWithTodo: NoteWithTodos = new NoteWithTodos(
+    1,
     "Typescript ist Toll",
     "das ist wirklich so",
     [
@@ -33,8 +15,12 @@ const noteWithTodo: NoteWithTodos = new NoteWithTodos(
     }
     ]);
 
-const notes: Note[] = [new Note("Developer OpenSpace", "42"),note];
+    const notesService: NotesService = new NotesService();
+    notesService.notes = [new Note(2,"Developer OpenSpace", "42"),note,noteWithTodo];
 
+// const sortArray: (notes: Note[]) => Note[] = (notes: Note[]) =>
+// notes.sort((current, next)=> current.position-next.position);
 
-
-console.log(notes[0].titel, notes[1].titel);
+console.log(pluralize `NoteCount: ${notesService.notes.length} Notes`);
+console.log(pluralize `NoteCount: ${1} Notes`);
+console.log(notesService.listTitles(" | "));

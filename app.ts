@@ -21,7 +21,7 @@ notesService.notes = [new Note(2, "Developer OpenSpace", "42"), note, noteWithTo
 
 const archivedNote: Note & IamAnArchivedElement =
     Object.assign(note, {archiveId: 12});
-    console.log(typeof archivedNote);
+    // console.log(archivedNote);
 // const sortArray: (notes: Note[]) => Note[] = (notes: Note[]) =>
 // notes.sort((current, next)=> current.position-next.position);
 
@@ -29,7 +29,14 @@ const archivedNote: Note & IamAnArchivedElement =
 
 // console.log(pluralize`NoteCount: ${notesService.notes.length} Notes`);
 // console.log(pluralize`NoteCount: ${1} Notes`);
-console.log(reverse<Note>(notesService.notes));
-console.log(notesService.listTitles(" | "));
-[notesService.notes[0], notesService.notes[1]] = [notesService.notes[1], notesService.notes[0]];
+// console.log(reverse<Note>(notesService.notes));
+// console.log(notesService.listTitles(" | "));
+// [notesService.notes[0], notesService.notes[1]] = [notesService.notes[1], notesService.notes[0]];
+
+// notesService.all((notes: Note[]) => {
+//     console.log(notes);
+// });
+
+notesService.allAsPromise()
+.then(notes => console.log(notes));
 

@@ -1,0 +1,27 @@
+{
+    "scripts": {
+        "start": "node ./dist/app.js",
+        "build": "webpack",
+        "build:w": "webpack --watch"
+    },
+    "dependencies": {
+        "css-loader": "^0.28.8",
+        "path": "^0.12.7",
+        "raw-loader": "^0.5.1",
+        "style-loader": "^0.19.1",
+        "systemjs": "^0.20.19",
+        "webpack": "^3.10.0",
+        "fetch-mock": "^6.3.0"
+    },
+    "devDependencies": {
+        "awesome-typescript-loader": "^3.4.1",
+        "http-server": "^0.10.0",
+        "@types/jest": "^22.2.0",
+        "@types/fetch-mock": "^6.0.1",
+        "@types/node-fetch": "^1.6.7",
+        "jest": "^22.4.2",
+        "jest-fetch-mock": "^1.4.2",
+        "ts-jest": "^22.4.1",
+        "typescript": "^2.7.2"
+    }
+}

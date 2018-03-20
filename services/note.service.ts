@@ -1,44 +1,56 @@
 import { Note } from "../models";
 
 export class NotesService {
-	notes: Note[];
+  notes: Note[];
 
-	constructor() {
-		this.notes = [];
-	}
+  constructor() {
+    this.notes = [];
+  }
 
-	// const call = (callback: Function);
+  // const call = (callback: Function);
 
-	all(callback: (notes: Note[]) => void): void {
-		setTimeout(() => callback(this.notes), 4000);
-	}
+  all(callback: (notes: Note[]) => void): void {
+    setTimeout(() => callback(this.notes), 4000);
+  }
 
-	allAsPromise(): Promise<Note[]> {
-		return new Promise<Note[]>(
-			(resolve, reject) => {
-				setTimeout(()=>resolve(this.notes), 2000);
-			});
-	}
+  allAsPromise(): Promise<Note[]> {
+    return new Promise<Note[]>((resolve, reject) => {
+      setTimeout(() => resolve(this.notes), 2000);
+    });
+  }
 
-	addNote(notes: Note | Note[]): void {
-		if (Array.isArray(notes)) {
-			notes.forEach(element => this.notes.push(element));
-		} else {
-			this.notes.push(notes);
-		}
-	}
+  allFromApi(): Promise<any> {
+    return fetch("https://api.strieter.eu/spartakiade/notes")
+      .then(response => response.json())
+      .catch(err => console.error(err));
+  }
 
-	sortNotes(notes: Note[]): Note[] {
-		return notes.sort((current, next) => current.position - next.position);
-	}
+  async allAsync(): Promise<any> {
+    const response: Response = await fetch(
+      "https://api.strieter.eu/spartakiade/notes"
+    );
+    return await response.json();
+  }
 
-	listTitles(seperator?: string): string {
-		return this.notes
-			.map(note => {
-				let elem: string = note.titel;
-				elem = "Awsome!!!! " + elem;
-				return elem;
-			})
-			.join(seperator || ",");
-	}
+  addNote(notes: Note | Note[]): void {
+    if (Array.isArray(notes)) {
+      notes.forEach(element => this.notes.push(element));
+    } else {
+      this.notes.push(notes);
+    }
+  }
+
+  sortNotes(notes: Note[]): Note[] {
+    return notes.sort((current, next) => current.position - next.position);
+  }
+
+  listTitles(seperator?: string): string {
+    return this.notes
+      .map(note => {
+        let elem: string = note.titel;
+        elem = "Awsome!!!! " + elem;
+        return elem;
+      })
+      .join(seperator || ",");
+  }
 }

@@ -27,5 +27,6 @@ During our Workshop I mention some libraries.
 
 * injection.js (https://github.com/mgechev/injection-js)
   * Dependency Injection for TS and JS made easy by Minko Gechev
+  * in addition I provide a branch where injection.js is used (coming soon)
 * g.rab (https://gist.github.com/GregOnNet/0f94e7bba1071dca607e5e70d3954ecb)
   * generating TestData for Test using models

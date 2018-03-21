@@ -44,3 +44,16 @@ console.log(notesService.listTitles(" | "));
   notesService.notes[1],
   notesService.notes[0],
 ];
+
+export function main(): void {
+  const childElement: HTMLElement = document.createElement("div");
+  childElement.innerHTML = `
+  <b>Title:</b> ${note.titel}
+  <b>Description:</b> ${note.description}`;
+  const b: any = document.body;
+  if (b) {
+    b.appendChild(childElement);
+  }
+}
+
+main();
